@@ -1,9 +1,10 @@
 ! Copyright (C) 2016-2017 Alexander Ilin.
 ! See http://factorcode.org/license.txt for BSD license.
-USING: accessors arrays assocs binary-search charts combinators
-combinators.short-circuit fry kernel locals make math math.order
-math.statistics math.vectors namespaces opengl opengl.gl
-sequences specialized-arrays.instances.alien.c-types.float
+USING: accessors arrays assocs binary-search charts charts.utils
+combinators combinators.short-circuit fry kernel locals make
+math math.order math.statistics math.vectors namespaces opengl
+opengl.gl sequences
+specialized-arrays.instances.alien.c-types.float
 splitting.monotonic ui.gadgets ui.render ;
 IN: charts.lines
 
@@ -207,9 +208,6 @@ ALIAS: y second
 
 : flip-y-axis ( chunks ymin,ymax -- chunks )
     first2 + '[ [ _ swap - ] assoc-map ] map ;
-
-! value' = (value - min) / (max - min) * width
-: scale ( width value max min -- value' ) neg [ + ] curry bi@ / * ;
 
 ! Return quotation that can be used in map operation.
 : scale-mapper ( width min,max -- quot: ( value -- value' ) )

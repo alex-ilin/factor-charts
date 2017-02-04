@@ -1,6 +1,6 @@
 ! Copyright (C) 2017 Alexander Ilin.
 ! See http://factorcode.org/license.txt for BSD license.
-USING: accessors arrays charts charts.lines charts.lines.private
+USING: accessors arrays charts charts.lines charts.utils
 colors.constants kernel locals math math.order opengl sequences
 ui.gadgets ui.render ;
 IN: charts.axes
@@ -13,9 +13,6 @@ ALIAS: x first
 ALIAS: y second
 
 : axis-pos ( min,max -- value ) 0 swap first2 clamp ;
-
-: default-color ( default obj -- )
-    color>> dup [ swap ] unless gl-color drop ;
 
 :: x-0y-chunk ( x y -- chunk ) x 0 2array x y 2array 2array ;
 :: 0x-y-chunk ( x y -- chunk ) 0 y 2array x y 2array 2array ;
