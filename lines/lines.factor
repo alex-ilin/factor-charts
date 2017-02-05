@@ -1,9 +1,9 @@
 ! Copyright (C) 2016-2017 Alexander Ilin.
 ! See http://factorcode.org/license.txt for BSD license.
 USING: accessors arrays assocs binary-search charts charts.utils
-combinators combinators.short-circuit fry kernel locals make
-math math.order math.statistics math.vectors namespaces opengl
-opengl.gl sequences
+colors.constants combinators combinators.short-circuit fry
+kernel locals make math math.order math.statistics math.vectors
+namespaces opengl opengl.gl sequences
 specialized-arrays.instances.alien.c-types.float
 splitting.monotonic ui.gadgets ui.render ;
 IN: charts.lines
@@ -245,7 +245,7 @@ PRIVATE>
 M: line draw-gadget*
     dup parent>> dup chart? [| line chart |
         chart chart-axes
-        line [ color>> gl-color ] [ data>> ] bi
+        COLOR: black line [ default-color ] [ data>> ] bi
         dupd clip-data swap second [ drawable-chunks ] keep
         flip-y-axis
         chart chart-dim first2 [ chart chart-axes first2 ] dip swap
